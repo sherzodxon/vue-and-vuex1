@@ -12,12 +12,5 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  build:{
-    env:{
-      vueRouterMode: "history",
-      API:ctx.dev
-      ? "https://retoolapi.dev/nMF93Q"
-      : "https://retoolapi.dev/nMF93Q"
-    }
-  }
+  
 })

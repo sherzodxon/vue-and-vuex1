@@ -8,9 +8,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "alertifyjs": "^1.13.1",
     "axios": "^1.4.0",
+    "sass": "^1.62.1",
+    "scss": "^0.2.4",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6",
+    "vuejs-paginate-next": "^1.0.2",
     "vuex": "^4.1.0"
   },
   "devDependencies": {

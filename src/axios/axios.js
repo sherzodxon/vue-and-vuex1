@@ -5,7 +5,9 @@ const api = axios.create({baseURL:"https://retoolapi.dev/nMF93Q"});
     all_users:"/users",
     post_users:"/users",
     delete_users:(id)=>`/users/${id}`,
-    put_users:"/users"
+    put_users:"/users",
+    pagination_users: (page=1 , limit = 8) =>
+    `/users?_page=${page}&_limit=${limit}`,
  }
 
  export{api,USERS}

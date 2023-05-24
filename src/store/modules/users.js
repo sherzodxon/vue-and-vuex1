@@ -11,14 +11,26 @@ const Users = {
     namespaced: true,
     state: () => ({
         users: [],
-        loading: false
+        loading: false,
+        alert: false,
+        userLength: 0,
+        page: 1
     }),
     mutations: {
         setUsers(state, data) {
             state.users = data
         },
+        setUserLength(state, data) {
+            state.userLength = data.length
+        },
         postUsers(state, data) {
-            state.product.unshift(data);
+            state.users.push(data);
+        },
+        setAlert(state, isAlert) {
+            state.alert = isAlert
+        },
+        setPage(state, data) {
+            state.page = data
         },
         setLoading(state, isLoading) {
             state.loading = isLoading
@@ -42,8 +54,29 @@ const Users = {
             context.commit("setLoading", true);
             const data = await getData(USERS.all_users);
             context.commit("setLoading", false);
-            context.commit("setUsers",data)
+            context.commit("setUsers", data);
+            context.commit("setUserLength", data)
+            console.log(data);
         },
+        async getUserPagination(context, {
+            page = 1,
+            limit = 8
+        }) {
+            context.commit("setLoading", true);
+            const data = await getData(USERS.pagination_users(page, limit));
+            context.commit("setUsers", data);
+            context.commit("setLoading", false);
+        },
+        async getPage(context, page) {
+            context.commit("setPage", page)
+        },
+        async getAlertOpen(context) {
+            context.commit("setAlert", true)
+        },
+        async getAlertClose(context) {
+            context.commit("setAlert", false)
+        },
+
         async createUsers(context, newData) {
             context.commit("setLoading", true);
             await postData(USERS.post_users, newData);

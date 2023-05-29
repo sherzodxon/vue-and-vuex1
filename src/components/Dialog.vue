@@ -13,52 +13,56 @@
         mapActions,
         mapState
     } from 'vuex';
-  import alertify from 'alertifyjs';
+    import alertify from 'alertifyjs';
     export default {
         name: "Dialog",
         props: {
-
             emit: {
                 type: Number || null,
                 required: true
             }
         },
         computed: {
-            ...mapState("users", ["alert","page"])
+            ...mapState("users", ["alert"])
         },
         methods: {
-            ...mapActions("users", ["getUsers","getAlertOpen", "getAlertClose", "deleteProduct","getUserPagination"]),
+            ...mapActions("users", ["getUsers", "getAlert", "deleteProduct", "getUserPagination"]),
             async loadData() {
                 try {
                     await this.getUsers()
                     await this.getUserPagination({
                         page: this.page,
-                        limit:5,
+                        limit: 5,
                     });
                 } catch {
                     console.error("yorvording!");
                 }
             },
             handleClose() {
-                this.getAlertClose()
-                const body = document.querySelector("body")
-                body.classList.remove('body-hidden')
-                const shadow = document.querySelector('#shadow')
-                shadow.classList.remove('modal-shadow--active')
+                this.getAlert(false)
+
             },
             async handleDelete() {
-                this.getAlertClose()
+                this.getAlert(false)
                 await this.deleteProduct(this.emit)
-              this.loadData()
-                const body = document.querySelector("body")
-                body.classList.remove('body-hidden')
-                const shadow = document.querySelector('#shadow')
-                shadow.classList.remove('modal-shadow--active')
+                this.loadData()
                 alertify.set('notifier', 'position', 'top-center');
                 alertify.success("Deleted", 'custom', 1, );
             },
-        },
+            classSelect() {
+                const shadow = document.querySelector('#shadow')
+                if (this.alert) {
+                    shadow.classList.add('modal-shadow--active')
 
+                } else {
+                    shadow.classList.remove('modal-shadow--active')
+                }
+            }
+        },
+        updated() {
+            this.classSelect()
+        },
+      
     }
 </script>
 <style>

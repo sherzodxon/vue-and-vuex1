@@ -11,7 +11,7 @@
 
                 <li class="list-inline-item">
 
-                    <button class="btn btn-sm btn-success rounded"
+                    <button @click='onEdit'  class="btn btn-sm btn-success rounded"
                         title="Edit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
                             class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -48,6 +48,9 @@
                 onDelete() {
                     this.$emit('onDelete', this.user.id);
                 },
+                onEdit(){
+                    this.$emit('onEdit',this.user.id)
+                }
         },
 
     }

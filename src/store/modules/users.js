@@ -14,7 +14,8 @@ const Users = {
         loading: false,
         alert: false,
         userLength: 0,
-        page: 1
+        edit:false,
+        modal:false
     }),
     mutations: {
         setUsers(state, data) {
@@ -29,8 +30,11 @@ const Users = {
         setAlert(state, isAlert) {
             state.alert = isAlert
         },
-        setPage(state, data) {
-            state.page = data
+        setEdit(state,edit){
+         state.edit= edit
+        },
+        setModal(state,bool){
+            state.modal=bool
         },
         setLoading(state, isLoading) {
             state.loading = isLoading
@@ -42,8 +46,9 @@ const Users = {
             }
         },
         editUsers(state, data) {
-            const editObjIndex = state.product.findIndex((obj) => obj.id === data.id);
-
+            
+            const editObjIndex = state.users.findIndex((obj) => obj.id ===data.id);
+         
             if (editObjIndex > -1) {
                 state.users.splice(editObjIndex, 1, data);
             }
@@ -55,26 +60,23 @@ const Users = {
             const data = await getData(USERS.all_users);
             context.commit("setLoading", false);
             context.commit("setUsers", data);
-            context.commit("setUserLength", data)
-            console.log(data);
+            context.commit("setUserLength", data);
         },
-        async getUserPagination(context, {
-            page = 1,
-            limit = 8
-        }) {
+        async getUserPagination(context, {page = 1,limit = 8}) {
             context.commit("setLoading", true);
             const data = await getData(USERS.pagination_users(page, limit));
             context.commit("setUsers", data);
             context.commit("setLoading", false);
         },
-        async getPage(context, page) {
-            context.commit("setPage", page)
+        async getAlert(context,bool) {
+            context.commit("setAlert", bool)
         },
-        async getAlertOpen(context) {
-            context.commit("setAlert", true)
+        async getModal(context,bool) {
+            context.commit("setModal", bool)
         },
-        async getAlertClose(context) {
-            context.commit("setAlert", false)
+        
+        async getEdit(context,bool){
+         context.commit("setEdit",bool)
         },
 
         async createUsers(context, newData) {
@@ -91,8 +93,8 @@ const Users = {
         },
         async editUsers(context, newData) {
             context.commit("setLoading", true);
-            await editData(USERS.put_product, newData);
-            context.commit("editProduct", newData);
+            await editData(USERS.put_users(newData.id),newData);
+            context.commit("editUsers", newData);
             context.commit("setLoading", false);
         }
     }

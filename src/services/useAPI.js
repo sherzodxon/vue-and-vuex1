@@ -8,7 +8,8 @@ const getData = async (url) => {
         throw new Error(error);
     }
 }
-const postData=async (url,data)=>{
+
+const postData = async (url,data)=>{
     try {   
         const res = await api.post(url,data)
         return res.data
@@ -16,6 +17,7 @@ const postData=async (url,data)=>{
         throw new Error(error);
     }
 }
+
 const editData = async (url, data) => {
     try {
       const res = await api.put(url, data);
@@ -23,7 +25,7 @@ const editData = async (url, data) => {
     } catch (error) {
       throw new Error(error);
     }
-  };
+ };
   
   const deleteData = async (url) => {
     try {

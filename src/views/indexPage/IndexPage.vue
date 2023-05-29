@@ -2,20 +2,20 @@
     <div class="wrapper">
         <div class="shadow container-xl border rounded mt-5 p-3 pb-5 border-ligth-subtle">
             <header class="header d-flex justify-content-between align-items-center">
-                <Modal />
+                <Modal :emit="emit" />
                 <Dialog :emit="emit" />
+                
             </header>
 
-            <table class=" table table-striped ">
+            <table class="table table-striped ">
                 <Thead />
                 <tbody class="tbody">
                     <div v-show="loading" class="spinner-shadow"></div>
                     <div v-show="loading" class="spinner-border spinner-wrapper" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
-                    <Users v-for="users in users" :user="users" :key="users.id" @onDelete="isDelete" />
+                    <Users v-for="users in users" :user="users" :key="users.id" @onDelete="isDelete" @onEdit="isEdit" />
                 </tbody>
-
             </table>
 
         </div>
@@ -36,12 +36,14 @@
     import Modal from '../../components/Modal.vue';
     import Dialog from '../../components/Dialog.vue';
     import Pagination from '../../components/Pagination.vue';
+    import axios from 'axios';
+
     export default {
         name: "IndexPage",
         data() {
             return {
                 alert: false,
-                emit: null
+                emit: null,
             }
         },
         components: {
@@ -52,38 +54,36 @@
             Pagination
         },
         computed: {
-            ...mapState("users", ["users", "loading", "alert","page" ])
+            ...mapState("users", ["users", "loading", "alert"])
         },
         methods: {
-            ...mapActions("users", ["getUsers", "createUsers", "getAlertOpen", "getUserPagination"]),
+            ...mapActions("users", ["getUsers", "createUsers", "getAlert", "getUserPagination", "getEdit"]),
             async loadData() {
                 try {
                     await this.getUsers()
                     await this.getUserPagination({
                         page: this.page,
-                        limit:5,
+                        limit: 5,
                     });
                 } catch {
                     console.error("yorvording!");
                 }
             },
-            async isDelete(item) {
+            isDelete(item) {
                 this.emit = item
-                this.getAlertOpen()
-                const body = document.querySelector("body")
-                body.classList.add('body-hidden')
-                const shadow = document.querySelector('#shadow')
-                shadow.classList.add('modal-shadow--active')
-            }
-
+                this.getAlert(true)
+            },
+            isEdit(item) {
+                this.emit = this.users.find((el) => el.id == item)
+                this.getEdit(true)
+            },
+            
 
         },
         mounted() {
-
             this.loadData()
 
-        }
-
+        },
 
     }
 </script>

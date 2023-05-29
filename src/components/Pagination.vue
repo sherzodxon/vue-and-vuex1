@@ -31,7 +31,7 @@
             }
         },
         mounted() {
-            console.log(this.users);
+           
         },
     };
 </script>

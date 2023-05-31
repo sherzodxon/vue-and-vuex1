@@ -1,4 +1,4 @@
-import { api} from "../axios/axios";
+import { api} from "../boot/axios";
 
 const getData = async (url) => {
     try {

@@ -4,7 +4,7 @@
             <header class="header d-flex justify-content-between align-items-center">
                 <Modal :emit="emit" />
                 <Dialog :emit="emit" />
-                
+                <router-link to="/about">About</router-link>
             </header>
 
             <table class="table table-striped ">
@@ -117,5 +117,10 @@
 
     .shadow-none {
         display: none;
+    }
+    @media only screen and (max-width:1100px) {
+        .container-xl{
+            width: 95%;
+        }
     }
 </style>

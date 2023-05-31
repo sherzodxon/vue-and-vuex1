@@ -1,17 +1,17 @@
 <template lang="">
     <tr>
-        <th scope="row">{{ user.id }}</th>
-        <td>{{ user.name }}</td>
-        <td>{{ user.username }}</td>
-        <td class="text-primary">{{ user.email }}</td>
-        <td>{{ user.phone }}</td>
-        <td>{{ user.date }}</td>
+        <th class="table-th" scope="row">{{ user.id }}</th>
+        <td class="table-td">{{ user.name }}</td>
+        <td class="table-td table-username">{{ user.username }}</td>
+        <td class="table-td text-primary">{{ user.email }}</td>
+        <td class="table-td text-success" >{{ user.phone }}</td>
+        <td class="table-td">{{ user.date }}</td>
         <td>
             <ul class="list-inline m-0">
 
                 <li class="list-inline-item">
 
-                    <button @click='onEdit'  class="btn btn-sm btn-success rounded"
+                    <button @click='onEdit'  class="btn user-btn btn-sm btn-outline-success rounded"
                         title="Edit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
                             class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -21,7 +21,7 @@
                     </button>
                 </li>
                 <li class="list-inline-item">
-                    <button @click="onDelete" class="btn btn-danger btn-sm rounded" title="Delete">
+                    <button @click="onDelete" class="btn user-btn btn-outline-danger btn-sm rounded" title="Delete">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-trash-fill" viewBox="0 0 16 16">
                             <path
@@ -55,6 +55,27 @@
 
     }
 </script>
-<style>
-
+<style lang="css">
+@media only screen and (max-width: 900px){
+    .table-td{
+        font-size: 14px;
+        text-align: center;
+    }
+    .table-th{
+        font-size: 11px;
+        text-align: center;
+    }
+}
+@media only screen and (max-width: 750px){
+.user-btn{
+    border: none;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+@media only screen and (max-width: 650px){
+.table-username{
+    display: none;
+}
+}
+}
 </style>

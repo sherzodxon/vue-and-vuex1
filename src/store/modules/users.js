@@ -1,6 +1,6 @@
 import {
     USERS
-} from "../../axios/axios";
+} from "../../boot/axios";
 import {
     getData,
     deleteData,

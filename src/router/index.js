@@ -9,6 +9,11 @@ const router = createRouter({
       name: 'home',
       component: IndexPage
     },
+    {
+      path:'/about',
+      name:'about',
+      component:()=> import('../views/about/AboutPage.vue')
+    }
    
   ]
 })

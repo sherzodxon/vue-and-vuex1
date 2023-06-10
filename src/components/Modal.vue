@@ -30,8 +30,8 @@
                             <Input v-model="phone" type="tel" id="number" placeholder="(99894) 936-5642" />
                         </div>
                         <div class="input-group flex-nowrap mb-3">
-                            <label for="street" class="input-group-text">street</label>
-                            <Input v-model="street" type="text" id="street" placeholder="guetamala" />
+                            <label for="street" class="input-group-text">Info</label>
+                            <textarea :value="street" @input="street=$event.target.value" id="street" placeholder="Info" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -83,7 +83,7 @@
                     await this.getUsers()
                     await this.getUserPagination({
                         page: this.page,
-                        limit: 5,
+                        limit: 8,
                     });
                 } catch {
                     console.error("yorvording!");
@@ -163,8 +163,8 @@
                     hour: '2-digit',
                     minute: '2-digit'
                 })
-            }
-
+            },
+           
         },
        
         watch: {
@@ -223,5 +223,11 @@
     .body-hidden {
         height: 100vh;
         overflow-y: hidden;
+    }
+    @media only screen and (max-width: 500px){
+        .my-modal{
+            width: 90%;
+            left: 5%;
+        }
     }
 </style>

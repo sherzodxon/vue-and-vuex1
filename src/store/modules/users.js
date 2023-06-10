@@ -5,7 +5,8 @@ import {
     getData,
     deleteData,
     editData,
-    postData
+    postData,
+    oneUsers
 } from "../../services/useAPI";
 const Users = {
     namespaced: true,
@@ -15,9 +16,11 @@ const Users = {
         alert: false,
         userLength: 0,
         edit:false,
-        modal:false
+        modal:false,
+        user:{}
     }),
-    mutations: {
+    
+    mutations: { 
         setUsers(state, data) {
             state.users = data
         },
@@ -53,6 +56,9 @@ const Users = {
                 state.users.splice(editObjIndex, 1, data);
             }
         },
+        setUser(state,data){
+            state.user=data
+        }
     },
     actions: {
         async getUsers(context) {
@@ -61,6 +67,12 @@ const Users = {
             context.commit("setLoading", false);
             context.commit("setUsers", data);
             context.commit("setUserLength", data);
+        },
+        async getUser(context,id){
+            context.commit("setLoading", true);
+            const data = await oneUsers(USERS.one_users(id));
+            context.commit("setLoading", false);
+            context.commit("setUser", data);
         },
         async getUserPagination(context, {page = 1,limit = 8}) {
             context.commit("setLoading", true);

@@ -1,5 +1,5 @@
 <template>
-    <paginate :page-count="Math.ceil(this.userLength / 5)" 
+    <paginate :page-count="Math.ceil(this.userLength / 8)" 
     :page-range="3" :margin-pages="2"
     :click-handler="clickCallback" 
     :prev-text="'Prev'" :next-text="'Next'"
@@ -26,7 +26,7 @@
             async clickCallback(pageNum) {
                 await this.getUserPagination({
                     page: pageNum,
-                    limit: 5
+                    limit: 8
                 }, )
             }
         },

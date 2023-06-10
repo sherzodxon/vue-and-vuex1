@@ -78,7 +78,7 @@
         left: calc(50% - 175px);
         border-radius: 10px;
         padding: 20px;
-        top: 80px;
+        top: 120px;
         z-index: 3;
     }
 
@@ -87,5 +87,12 @@
         margin-left: auto;
         display: flex;
         justify-content: space-between;
+    }
+    @media only screen and (max-width: 500px){
+        .dialog{
+            width: 300px;
+            left:  calc(50% - 150px);
+            top: 150px;
+        }
     }
 </style>

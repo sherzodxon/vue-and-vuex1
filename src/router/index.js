@@ -13,6 +13,12 @@ const router = createRouter({
       path:'/about',
       name:'about',
       component:()=> import('../views/about/AboutPage.vue')
+    },
+    {
+      path:'/user/:userId',
+      name:'user',
+      component:()=>import('../views/user/User.vue'),
+      props:true
     }
    
   ]

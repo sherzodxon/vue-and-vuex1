@@ -63,7 +63,7 @@
                     await this.getUsers()
                     await this.getUserPagination({
                         page: this.page,
-                        limit: 5,
+                        limit: 8,
                     });
                 } catch {
                     console.error("yorvording!");

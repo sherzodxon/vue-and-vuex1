@@ -88,6 +88,9 @@
     }
 </script>
 <style lang="css">
+body {
+    font-family: 'Oswald', sans-serif !important;
+  }
     .spinner-wrapper {
         position: absolute;
         top: 30%;

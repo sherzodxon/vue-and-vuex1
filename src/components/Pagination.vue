@@ -51,5 +51,10 @@
     .page-item:first-child {
         display: none;
     }
+    @media only screen and (max-width: 650px){
+        .pagination{
+            left: 45%;
+        }
+    }
     
 </style>

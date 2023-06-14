@@ -1,6 +1,6 @@
 <template>
     <!-- Button trigger modal -->
-    <button type="button" @click="handleOpenModal" class="btn btn-warning mb-3">Add</button>
+    <button type="button" @click="handleOpenModal" class="btn btn-warning mb-3">Qo'shish</button>
     <!-- Modal -->
     <div class="modal-shadow" id="shadow"></div>
     <div v-if="modal || edit" class="modal-shadow--active"></div>
@@ -8,17 +8,17 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header mb-3">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">{{edit? "Edit user":"Add user"}}</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">{{edit? "O'zgartirish":"Yangi foydalanuvchi qo'shish"}}</h1>
                     <button type="button" @click="handleCloseModal" class="btn-close"></button>
                 </div>
                 <form @submit="handleCreateUser" id="modal-form" class="create-modal-form">
                     <div class="modal-body">
                         <div class="input-group flex-nowrap mb-3">
-                            <Input v-model="name" placeholder="Name" />
+                            <Input v-model="name" placeholder="Ismi" />
                         </div>
                         <div class="input-group flex-nowrap mb-3">
                             <label for="username" class="input-group-text">@</label>
-                            <Input v-model="username" id='username' placeholder="Username" />
+                            <Input v-model="username" id='username' placeholder="Foydalanuvchi nomi" />
                         </div>
                         <div class="input-group flex-nowrap mb-3">
                             <label for="exampleFormControlInput1" class="input-group-text">email</label>
@@ -26,12 +26,12 @@
                                 placeholder="name@example.com" />
                         </div>
                         <div class="input-group flex-nowrap mb-3">
-                            <label for="number" class="input-group-text">number</label>
+                            <label for="number" class="input-group-text">raqam</label>
                             <Input v-model="phone" type="tel" id="number" placeholder="(99894) 936-5642" />
                         </div>
                         <div class="input-group flex-nowrap mb-3">
                             <label for="street" class="input-group-text">Info</label>
-                            <textarea :value="street" @input="street=$event.target.value" id="street" placeholder="Info" class="form-control"></textarea>
+                            <textarea :value="street" @input="street=$event.target.value" id="street" placeholder="Info" class="form-control textarea"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -108,7 +108,7 @@
                         await this.editUsers(newData);
                        await  this.loadData()
                         alertify.set('notifier', 'position', 'top-center');
-                        alertify.success("Edited", 'custom', 1, );
+                        alertify.success("O'zgartirildi", 'custom', 1, );
                     } catch (error) {
                        
                         alertify.set('notifier', 'position', 'top-center');
@@ -121,7 +121,7 @@
                     await this.createUsers(newData);
                     await  this.loadData()
                     alertify.set('notifier', 'position', 'top-center');
-                    alertify.success("Created", 'custom', 1, );
+                    alertify.success("Qo'shildi", 'custom', 1, );
                 } catch (error) {
                     alertify.set('notifier', 'position', 'top-center');
                     alertify.error("Error", 'custom', 1, );
@@ -223,6 +223,9 @@
     .body-hidden {
         height: 100vh;
         overflow-y: hidden;
+    }
+    .textarea{
+        height: 100px;
     }
     @media only screen and (max-width: 500px){
         .my-modal{

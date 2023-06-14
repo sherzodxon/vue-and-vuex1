@@ -2,11 +2,11 @@
         <thead>
             <tr>
               <th class="table-th" scope="col">ID</th>
-              <th class="table-td" scope="col">Name</th>
-              <th class="table-td table-username" scope="col">Username</th>
+              <th class="table-td" scope="col">Ism</th>
+              <th class="table-td table-username" scope="col">....</th>
               <th class="table-td table-username" scope="col">Email</th>
-              <th class="table-td" scope="col">Number</th>
-              <th class="table-td" scope="col">Date</th>
+              <th class="table-td" scope="col">Raqam</th>
+              <th class="table-td" scope="col">Vaqt</th>
               <th class="table-td" scope="col"></th>
             </tr>
           </thead>

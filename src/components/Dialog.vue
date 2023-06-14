@@ -1,9 +1,9 @@
 <template>
     <div :class="alert?'dialog shadow':'dialog-none'">
-        <h4 class="fs-4 mb-5">Are you sure?</h4>
+        <h4 class="fs-4 mb-5">O'chirasizmi?</h4>
         <div class="dialog-buttons-wrapper">
-            <button class="btn btn-outline-primary " @click="handleClose">No</button>
-            <button class="btn btn-danger" @click="handleDelete">Yes</button>
+            <button class="btn btn-outline-primary " @click="handleClose">Yo'q</button>
+            <button class="btn btn-danger" @click="handleDelete">Ha</button>
         </div>
 
     </div>
@@ -47,7 +47,7 @@
                 await this.deleteProduct(this.emit)
                 this.loadData()
                 alertify.set('notifier', 'position', 'top-center');
-                alertify.success("Deleted", 'custom', 1, );
+                alertify.success("O'chirildi", 'custom', 1, );
             },
             classSelect() {
                 const shadow = document.querySelector('#shadow')

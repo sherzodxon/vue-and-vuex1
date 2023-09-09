@@ -5,7 +5,7 @@
         <td class="table-td table-username">{{ user.username }}</td>
         <td class="table-td text-primary table-username">{{ user.email }}</td>
         <td class="table-td text-success" >{{ user.phone }}</td>
-        <td class="table-td">{{ user.date }}</td>
+        <td class="table-td date-text">{{ user.date }}</td>
         <td>
             <ul class="list-inline m-0">
 
@@ -56,6 +56,9 @@
     }
 </script>
 <style lang="css">
+.date-text{
+    color: brown;
+}
 @media only screen and (max-width: 900px){
     .table-td{
         font-size: 12px;
